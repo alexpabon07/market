@@ -25,7 +25,7 @@ public class Product {
     private Integer idCategory;
 
     @Column(name = "codigo_barras")
-    private String barcode;
+    private String barCode;
 
     @Column(name = "precio_venta")
     private Integer salePrice;
@@ -64,12 +64,12 @@ public class Product {
         this.idCategory = idCategory;
     }
 
-    public String getBarcode() {
-        return barcode;
+    public String getBarCode() {
+        return barCode;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
     }
 
     public Integer getSalePrice() {
