@@ -5,7 +5,7 @@ import com.alexpabon07.market.domain.ProductD;
 import java.util.List;
 import java.util.Optional;
 
-public interface ProductRepository {
+public interface ProductRepositoryD {
 
     List<ProductD> getAll();
     Optional<List<ProductD>> getByCategory(int categoryId);

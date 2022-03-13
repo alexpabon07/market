@@ -21,12 +21,12 @@ public interface ProductMapper {
             @Mapping(source = "status", target = "active"),
             @Mapping(source = "category", target = "categoryD")
     })
-    ProductD toProductD(Product product);
+    ProductD toProduct(Product product);
 
-    List<Product> toProducts(List<Product> products);
+    List<ProductD> toProducts(List<Product> products);
 
     @InheritInverseConfiguration
     @Mapping(target = "barCode", ignore = true)
-    Product toProduct(ProductD productD);
+    Product toProductD(ProductD productD);
 
 }
