@@ -1,7 +1,17 @@
 package com.alexpabon07.market.persistence.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "compras")
@@ -26,6 +36,13 @@ public class Buy {
 
     @Column(name = "estado")
     private Boolean status;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client", insertable = false, updatable = false)
+    private Client client;
+
+    @OneToMany(mappedBy = "product")
+    private List<BuyProduct> products;
 
     public Integer getIdBuy() {
         return idBuy;

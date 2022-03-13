@@ -1,10 +1,11 @@
 package com.alexpabon07.market.persistence.entity;
 
-
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "compras_productos")
@@ -20,6 +21,14 @@ public class BuyProduct {
 
     @Column(name = "estado")
     private Boolean status;
+
+    @ManyToOne
+    @JoinColumn(name = "id_compra", insertable = false, updatable = false)
+    private Buy buy;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto", insertable = false, updatable = false)
+    private Product product;
 
     public BuyProductPK getId() {
         return id;
