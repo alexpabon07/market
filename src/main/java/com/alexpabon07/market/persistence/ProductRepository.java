@@ -4,8 +4,8 @@ import com.alexpabon07.market.domain.ProductD;
 import com.alexpabon07.market.domain.repository.ProductRepositoryD;
 import com.alexpabon07.market.persistence.crud.ProductCrudRepository;
 import com.alexpabon07.market.persistence.entity.Product;
-import com.alexpabon07.market.persistence.mapper.CategoryMapper;
 import com.alexpabon07.market.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,9 +14,11 @@ import java.util.Optional;
 @Repository
 public class ProductRepository implements ProductRepositoryD {
 
+    @Autowired
     private ProductCrudRepository productCrudRepository;
+
+    @Autowired
     private ProductMapper productMapper;
-    private CategoryMapper categoryMapper;
 
     @Override
     public List<ProductD> getAll() {
@@ -35,7 +37,7 @@ public class ProductRepository implements ProductRepositoryD {
 
     @Override
     public Optional<List<ProductD>> getScarseProducts(int quantity) {
-        Optional<List<Product>> products = productCrudRepository.findByStockQuantityLessThanAndEstatus(quantity, true);
+        Optional<List<Product>> products = productCrudRepository.findByStockQuantityLessThanAndStatus(quantity, true);
         return products.map(prods -> productMapper.toProducts(prods));
     }
 
