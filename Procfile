@@ -1,0 +1,1 @@
+web: java -jar build/libs/market-a.0.jar
