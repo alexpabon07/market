@@ -1,14 +1,6 @@
 package com.alexpabon07.market.persistence.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,13 +27,13 @@ public class Buy {
     private String comment;
 
     @Column(name = "estado")
-    private Boolean status;
+    private String status;
 
     @ManyToOne
-    @JoinColumn(name = "id_client", insertable = false, updatable = false)
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
     private Client client;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "buy", cascade = {CascadeType.ALL})
     private List<BuyProduct> products;
 
     public Integer getIdBuy() {
@@ -84,11 +76,27 @@ public class Buy {
         this.comment = comment;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public List<BuyProduct> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<BuyProduct> products) {
+        this.products = products;
     }
 }

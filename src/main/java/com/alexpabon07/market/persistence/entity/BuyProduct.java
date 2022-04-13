@@ -1,11 +1,6 @@
 package com.alexpabon07.market.persistence.entity;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "compras_productos")
@@ -23,6 +18,7 @@ public class BuyProduct {
     private Boolean status;
 
     @ManyToOne
+    @MapsId("idBuy")
     @JoinColumn(name = "id_compra", insertable = false, updatable = false)
     private Buy buy;
 
@@ -60,5 +56,21 @@ public class BuyProduct {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public Buy getBuy() {
+        return buy;
+    }
+
+    public void setBuy(Buy buy) {
+        this.buy = buy;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
